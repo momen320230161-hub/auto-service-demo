@@ -31,27 +31,21 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div className="hero-visual">
+        <figure className="hero-visual">
           <div className="hero-photo">
             <Image
-              src="/images/workshop.jpg"
+              src="/images/service-work.jpg"
               alt={content.imageAlt}
               fill
               priority
               sizes="(max-width: 760px) 100vw, 50vw"
             />
           </div>
-          <div className="photo-caption">
-            <span>
-              {content.caption[0]}
-              <br />
-              <strong>{content.caption[1]}</strong>
-            </span>
-            <span className="caption-icon">
-              <Wrench size={22} strokeWidth={1.5} aria-hidden="true" />
-            </span>
-          </div>
-        </div>
+          <figcaption className="photo-caption">
+            <strong>{content.caption[0]}</strong>
+            <span>{content.caption[1]}</span>
+          </figcaption>
+        </figure>
       </section>
       <section id="services" className="services-section">
         <div className="container">

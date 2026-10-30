@@ -71,8 +71,8 @@ export const homeContent = {
   intro: "A little care goes a long way.",
   note: "A service experience, thoughtfully reimagined.",
   noteDetail: "An independent workshop concept.",
-  imageAlt: "Close-up of an automotive engine with belts, pulleys and hoses",
-  caption: ["Behind every good journey.", "A little attention to detail."],
+  imageAlt: "Mechanic working under the open hood of a silver vehicle in a workshop",
+  caption: ["Care starts with a closer look.", "Illustrative workshop photography · Concept demo"],
   services: {
     kicker: "Looking after the essentials",
     title: ["Care for every", "part of your journey."],

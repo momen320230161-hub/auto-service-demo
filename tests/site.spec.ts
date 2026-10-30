@@ -9,7 +9,7 @@ test("homepage, navigation, responsive layout and image", async ({
     "Good care. For the road ahead.",
   );
   const photo = page.getByAltText(
-    "Close-up of an automotive engine with belts, pulleys and hoses",
+    "Mechanic working under the open hood of a silver vehicle in a workshop",
   );
   await expect(photo).toBeVisible();
   await expect
