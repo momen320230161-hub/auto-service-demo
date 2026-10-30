@@ -4,6 +4,10 @@ A light-only automotive service concept built with Next.js App Router, TypeScrip
 
 Previews: [Desktop homepage](artifacts/home-desktop.png) · [Mobile homepage](artifacts/home-mobile.png) · [Mobile booking start](artifacts/booking-mobile-start.png) · [Desktop request review](artifacts/review-desktop.png) · [Mobile request review](artifacts/review-mobile.png).
 
+Latest visual refinement: [design assessment, decisions and before/after screenshots](DESIGN_REFINEMENT.md). This preserves the established identity while refining headline composition, photograph framing, service hierarchy and booking context.
+
+Latest client presentation build: [handoff and final screenshots](CLIENT_DEMO_HANDOFF.md). Includes the interactive service explorer, compact process, concern-first entry and desktop booking summary.
+
 ## Run locally
 
 Use Node.js 22 or 24 LTS and npm.
@@ -26,10 +30,10 @@ npm start
 
 ## What works
 
-- Responsive home page, mobile navigation, service links with preselection, anchor navigation, and contact placeholders.
+- Responsive home page, mobile navigation, interactive service exploration with preselected booking links, anchor navigation, and a concise pending-contact notice.
 - Five-step booking demo: service, optional vehicle details/notes, preferred date/time, sample contact details, and editable review.
 - Editing a reviewed step returns directly to review after validation; cancel restores the previous values. The footer's top link preserves the current page and booking state.
-- Readable body text and 16px form controls, with a compact mobile booking introduction and all four configurable contact fields shown separately. Browser titles derive from the sample brand configuration.
+- Readable body text and 16px form controls, with a compact mobile booking introduction and a desktop request summary. Set `site.contact.confirmed` after verifying the contact fields to display them; otherwise one placeholder notice is shown. Browser titles derive from the sample brand configuration.
 - Field validation, inline error descriptions, focus on invalid fields, step heading focus, keyboard controls, skip link, and reduced-motion support.
 - Completion explicitly says **“Demo — not submitted”** and **“Demo request only — no appointment has been booked or sent.”**
 
@@ -47,7 +51,7 @@ All booking data stays in React memory. It is not posted, emailed, placed in a U
 
 ESLint 9 is retained to match the peer support of the React, import and accessibility plugins included in `eslint-config-next`; migrate to ESLint 10 when those plugins support it. The lockfile includes the patched transitive packages identified by `npm audit`.
 
-The homepage is a server component. Only navigation and booking interactions use client components. The local photo is optimized through `next/image`; no runtime image-host configuration is needed. Search indexing is disabled for this unverified demo in `src/app/layout.tsx`.
+The homepage is a server component. Navigation, service exploration and booking interactions use client components. The local photo is optimized through `next/image`; no runtime image-host configuration is needed. Search indexing is disabled for this unverified demo in `src/app/layout.tsx`.
 
 ## Browser checks
 
@@ -77,6 +81,12 @@ Git pushes to connected branches can create preview deployments. A project confi
 Official reference: [Next.js on Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs).
 
 ## Verification — 30 October 2026
+
+The subsequent full audit is documented in [AUDIT_REPORT.md](AUDIT_REPORT.md), including severity-ranked findings, fixes, measured local performance and limitations. **25 browser tests passed** across Chrome desktop/mobile and WebKit mobile, with the seven-width matrix run once in desktop Chrome (two duplicate matrix entries intentionally skipped). The matrix covers home and every booking stage at 320, 375, 430, 768, 1024, 1440 and 1920px. Build, TypeScript, lint and the dependency advisory audit passed. Changes from this audit remain local; nothing was pushed or deployed.
+
+Run the repeatable local load measurement with a production server running using `node scripts/audit-performance.mjs` (set `PLAYWRIGHT_CHANNEL=chrome` to use installed Chrome). It saves measured observations to `artifacts/audit/performance.json`; it does not produce a Lighthouse score or field Core Web Vitals.
+
+Earlier implementation verification:
 
 `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, and all **15 Playwright tests** passed: 10 in Chrome (desktop and phone emulation), plus 5 in the optional WebKit phone project. The dependency audit reported **0 vulnerabilities**. Browser checks covered homepage widths from 320px to 1440px; mobile accessibility checks also exercised every booking stage at 320px. Review-edit validation/cancellation, retained booking data on the top link, skip-link destination focus, Escape dismissal, reduced motion and local-only completion were verified. Desktop/mobile home and review screenshots were visually inspected. This is local production-build verification; no Vercel deployment or physical-device Safari verification has been performed.
 

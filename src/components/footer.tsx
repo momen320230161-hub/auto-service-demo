@@ -18,7 +18,7 @@ export function Footer() {
           </div>
           <div className="contact-details">
             <h2>Let’s get in touch</h2>
-            <dl>
+            {site.contact.confirmed ? <dl>
               {[
                 ["Phone", site.contact.phone],
                 ["Email", site.contact.email],
@@ -30,7 +30,7 @@ export function Footer() {
                   <dd>{value}</dd>
                 </div>
               ))}
-            </dl>
+            </dl> : <p className="contact-pending">Workshop location, contact details and opening hours will be added once confirmed.</p>}
             <Link href="/booking">
               Explore the request demo{" "}
               <ArrowUpRight size={16} aria-hidden="true" />

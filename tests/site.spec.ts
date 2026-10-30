@@ -239,7 +239,11 @@ test("booking validates, retains edits and completes locally without submission"
 });
 test("service links preselect the matching service", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: /^Brakes Inspection/ }).click();
+  await page.getByRole("button", { name: "Brakes", exact: true }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("button", { name: "Brakes", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#service-detail h3")).toHaveText("Brakes");
+  await page.getByRole("link", { name: "Choose brakes", exact: true }).click();
   await expect(
     page.getByRole("radio", { name: "Brakes", exact: true }),
   ).toBeChecked();

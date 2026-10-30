@@ -41,11 +41,8 @@ test("accessibility across home, booking steps, validation and completion", asyn
     `${site.name} ${site.descriptor} — Concept Demo`,
   );
   const footer = page.locator("footer");
-  await expect(footer.locator("dl > div")).toHaveCount(4);
-  for (const label of ["Phone", "Email", "Workshop", "Hours"])
-    await expect(
-      footer.locator("dt", { hasText: new RegExp(`^${label}$`) }),
-    ).toBeVisible();
+  await expect(footer.locator(".contact-pending")).toContainText("once confirmed");
+  await expect(footer.locator("dl")).toHaveCount(0);
   await audit(page);
   await page.goto("/booking");
   await page.getByRole("button", { name: "Continue", exact: true }).click();

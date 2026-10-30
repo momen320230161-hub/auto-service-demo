@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, MoveRight, Wrench } from "lucide-react";
-import { homeContent as content, services, site } from "@/content/site";
-import { ServiceIcon } from "@/components/icons";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { homeContent as content, site } from "@/content/site";
+import { ServiceExplorer } from "@/components/service-explorer";
 export default function Home() {
   return (
     <main id="main" tabIndex={-1}>
@@ -22,14 +22,6 @@ export default function Home() {
               Explore services <ArrowDown size={16} aria-hidden="true" />
             </a>
           </div>
-          <div className="hero-note">
-            <Wrench size={17} strokeWidth={1.5} aria-hidden="true" />
-            <span>
-              {content.note}
-              <br />
-              <span className="muted">{content.noteDetail}</span>
-            </span>
-          </div>
         </div>
         <figure className="hero-visual">
           <div className="hero-photo">
@@ -37,8 +29,8 @@ export default function Home() {
               src="/images/service-work.jpg"
               alt={content.imageAlt}
               fill
-              priority
-              sizes="(max-width: 760px) 100vw, 50vw"
+              preload
+              sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1280px) 52vw, 650px"
             />
           </div>
           <figcaption className="photo-caption">
@@ -51,11 +43,11 @@ export default function Home() {
         <div className="container">
           <div className="section-heading">
             <div>
-              <p className="section-kicker">{content.services.kicker}</p>
-              <h2>
+              <h2>{content.services.kicker}</h2>
+              <p className="services-subtitle">
                 {content.services.title[0]}
-                <br className="desktop-break" /> {content.services.title[1]}
-              </h2>
+                {" "}{content.services.title[1]}
+              </p>
             </div>
             <p>
               {content.services.description[0]}
@@ -64,34 +56,7 @@ export default function Home() {
               <span className="demo-note">{content.services.disclaimer}</span>
             </p>
           </div>
-          <div className="service-grid">
-            {services.map((service) => (
-              <Link
-                key={service.id}
-                href={`/booking?service=${service.id}`}
-                className="service-item"
-              >
-                <ServiceIcon name={service.icon} />
-                <div>
-                  <h3>{service.name}</h3>
-                  <p>{service.description}</p>
-                </div>
-                <ArrowUpRight
-                  className="service-arrow"
-                  size={21}
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                />
-              </Link>
-            ))}
-          </div>
-          <div className="service-help">
-            <span>{content.services.help}</span>
-            <Link className="text-link" href="/booking?service=unsure">
-              {content.services.helpAction}{" "}
-              <MoveRight size={18} aria-hidden="true" />
-            </Link>
-          </div>
+          <ServiceExplorer />
         </div>
       </section>
       <section id="approach" className="approach container">
@@ -99,13 +64,10 @@ export default function Home() {
           <p className="section-kicker">{content.approach.kicker}</p>
           <h2>
             {content.approach.title[0]}
-            <br />
+            <br />{" "}
             {content.approach.title[1]}
           </h2>
-          <p>{content.approach.description}</p>
-          <Link className="text-link" href="/booking">
-            Try the booking demo <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+
         </div>
         <ol className="process-list">
           {content.approach.steps.map((item, index) => (
@@ -134,12 +96,11 @@ export default function Home() {
             <br />
             {content.booking.description[1]}
           </p>
-          <Link href="/booking" className="button">
-            Request appointment <ArrowUpRight size={19} aria-hidden="true" />
+          <Link href="/booking?service=unsure" className="button">
+            Describe a concern <ArrowUpRight size={19} aria-hidden="true" />
           </Link>
           <small>{content.booking.disclaimer}</small>
         </div>
-        <span className="road-lines" aria-hidden="true" />
       </section>
     </main>
   );

@@ -1,0 +1,72 @@
+{
+  "measuredAt": "2026-10-30T12:26:05.410Z",
+  "environment": "Local production server; Chrome; fresh browser contexts; DPR 1; no CPU/network throttling; single sample each. Layout-shift total is observed during load only. INP and real-user Core Web Vitals not measured.",
+  "results": [
+    {
+      "width": 390,
+      "route": "/",
+      "lcpMs": 488,
+      "layoutShiftTotal": 0,
+      "ttfbMs": 2.5,
+      "transferredBytes": 251676,
+      "javascriptEncodedBytes": 148647,
+      "imageUrl": "http://localhost:3000/_next/image?url=%2Fimages%2Fservice-work.jpg&w=384&q=75",
+      "thirdPartyResources": []
+    },
+    {
+      "width": 390,
+      "route": "/booking",
+      "lcpMs": 116,
+      "layoutShiftTotal": 0.016515277777777778,
+      "ttfbMs": 1.8999999910593033,
+      "transferredBytes": 228312,
+      "javascriptEncodedBytes": 148647,
+      "imageUrl": null,
+      "thirdPartyResources": []
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "lcpMs": 100,
+      "layoutShiftTotal": 0,
+      "ttfbMs": 3.5,
+      "transferredBytes": 273456,
+      "javascriptEncodedBytes": 148647,
+      "imageUrl": "http://localhost:3000/_next/image?url=%2Fimages%2Fservice-work.jpg&w=640&q=75",
+      "thirdPartyResources": []
+    },
+    {
+      "width": 1440,
+      "route": "/booking",
+      "lcpMs": 152,
+      "layoutShiftTotal": 0.002944866415895062,
+      "ttfbMs": 3.3999999910593033,
+      "transferredBytes": 231202,
+      "javascriptEncodedBytes": 148647,
+      "imageUrl": null,
+      "thirdPartyResources": []
+    },
+    {
+      "width": 1920,
+      "route": "/",
+      "lcpMs": 128,
+      "layoutShiftTotal": 0,
+      "ttfbMs": 4.399999991059303,
+      "transferredBytes": 273456,
+      "javascriptEncodedBytes": 148647,
+      "imageUrl": "http://localhost:3000/_next/image?url=%2Fimages%2Fservice-work.jpg&w=640&q=75",
+      "thirdPartyResources": []
+    },
+    {
+      "width": 1920,
+      "route": "/booking",
+      "lcpMs": 188,
+      "layoutShiftTotal": 0.0022086498119212963,
+      "ttfbMs": 7.699999988079071,
+      "transferredBytes": 231202,
+      "javascriptEncodedBytes": 148647,
+      "imageUrl": null,
+      "thirdPartyResources": []
+    }
+  ]
+}

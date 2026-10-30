@@ -5,6 +5,7 @@ export const site = {
   description:
     "An automotive service website concept. Explore illustrative services and a local-only appointment request demo.",
   contact: {
+    confirmed: false,
     phone: "To be confirmed",
     address: "To be confirmed",
     hours: "To be confirmed",
@@ -57,6 +58,38 @@ export const services = [
   },
 ] as const;
 export const steps = ["Service", "Vehicle", "Preference", "Contact", "Review"];
+export const serviceDetails = {
+  oil: {
+    category: "Routine maintenance",
+    description: "Start a request for an oil and filter service. Add your vehicle details so the workshop can discuss the appropriate maintenance with you.",
+    prompts: ["When the oil was last changed, if known", "Your current mileage", "Any maintenance reminder on the dashboard"],
+  },
+  brakes: {
+    category: "Braking concerns",
+    description: "Describe a change in how your brakes sound or feel. A request gives the workshop context for a conversation about an inspection.",
+    prompts: ["Noise or vibration when braking", "A change in pedal feel", "When you first noticed the concern"],
+  },
+  diagnostics: {
+    category: "Understanding the problem",
+    description: "A warning light or an unfamiliar change can be difficult to describe. Start with what you have noticed; you don’t need to know the cause.",
+    prompts: ["The warning light or message shown", "When the change happens", "Whether it is occasional or constant"],
+  },
+  battery: {
+    category: "Starting & electrical",
+    description: "Use this request to discuss battery condition or starting difficulties. Include the symptoms rather than guessing which part needs replacing.",
+    prompts: ["What happens when you try to start", "How long the vehicle has been parked", "Battery age, if known"],
+  },
+  tires: {
+    category: "Tires & road feel",
+    description: "Ask about tire wear, balancing or alignment. Describe what you have seen or felt so the workshop can understand the concern.",
+    prompts: ["Visible or uneven tire wear", "Vibration or pulling to one side", "Recent tire changes, if any"],
+  },
+  ac: {
+    category: "Cabin comfort",
+    description: "Start an inquiry about cooling or ventilation. A short description of the airflow and temperature helps explain what needs attention.",
+    prompts: ["Whether the air is warm or weak", "If the problem changes while driving", "Any unusual sound or smell"],
+  },
+} as const;
 export const timeWindows = [
   "Morning (8am–12pm)",
   "Afternoon (12pm–5pm)",
@@ -64,9 +97,7 @@ export const timeWindows = [
 ];
 
 export const homeContent = {
-  intro: "Maintenance & repair, thoughtfully considered.",
-  note: "A service experience, thoughtfully reimagined.",
-  noteDetail: "An independent workshop concept.",
+  intro: "Maintenance. Repairs. A place to start.",
   imageAlt:
     "Mechanic working under the open hood of a silver vehicle in a workshop",
   caption: [
@@ -74,7 +105,7 @@ export const homeContent = {
     "Illustrative workshop photography · Concept demo",
   ],
   services: {
-    kicker: "Explore the services",
+    kicker: "Explore our services",
     title: ["Everyday upkeep.", "Unexpected concerns."],
     description: [
       "Find a starting point for what your car needs.",
@@ -91,25 +122,25 @@ export const homeContent = {
       "Choose a service, tell us about your car, and add a preferred time. Review everything before completing the demo.",
     steps: [
       {
-        title: "Tell us what brings you in",
+        title: "Choose a service",
         text: "Choose a service, or describe the sound, light or feeling you’ve noticed.",
       },
       {
-        title: "Make it work around your day",
+        title: "Add your preferences",
         text: "Add your vehicle details and a preferred date and time window.",
       },
       {
-        title: "Review before the next step",
+        title: "Review your request",
         text: "Check your details. In a real service, the workshop would follow up to arrange a visit.",
       },
     ],
   },
   booking: {
-    kicker: "Try the appointment request",
-    title: ["Your car.", "Your next step."],
+    kicker: "No diagnosis needed",
+    title: ["Not sure?", "Start with what you notice."],
     description: [
-      "Start with a service or describe a concern.",
-      "You can review and edit before finishing.",
+      "A sound, a warning light, a change in how it feels.",
+      "Describe it in your own words in the request demo.",
     ],
     disclaimer: "Demo only. Nothing is booked or submitted.",
   },

@@ -8,6 +8,15 @@ export function Header() {
   const menuButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!open) return;
+    const desktop = window.matchMedia("(min-width: 961px)");
+    function closeOnDesktop(event: MediaQueryListEvent) {
+      if (!event.matches) return;
+      const active = document.activeElement;
+      if (active === menuButton.current || active?.closest("#mobile-nav")) {
+        document.querySelector<HTMLAnchorElement>(".desktop-nav a")?.focus();
+      }
+      setOpen(false);
+    }
     function dismiss(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setOpen(false);
@@ -15,7 +24,11 @@ export function Header() {
       }
     }
     document.addEventListener("keydown", dismiss);
-    return () => document.removeEventListener("keydown", dismiss);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.removeEventListener("keydown", dismiss);
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
   }, [open]);
   return (
     <header className="site-header">

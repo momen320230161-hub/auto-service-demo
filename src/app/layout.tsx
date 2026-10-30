@@ -31,10 +31,10 @@ export default function RootLayout({
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <div className="concept-bar">
+        <aside className="concept-bar" aria-label="Demo notice">
           A website concept for the way forward.{" "}
           <span>Sample brand · Demo only</span>
-        </div>
+        </aside>
         <Header />
         {children}
         <Footer />

@@ -93,7 +93,7 @@ export function BookingForm() {
       requestAnimationFrame(() =>
         form.current
           ?.querySelector<HTMLElement>(
-            '[aria-invalid="true"], [data-invalid="true"]',
+            'input[aria-invalid="true"], select[aria-invalid="true"], [data-invalid="true"]',
           )
           ?.focus(),
       );
@@ -234,7 +234,7 @@ export function BookingForm() {
         <aside className="booking-sidebar">
           <p className="section-kicker">Appointment request · Demo</p>
           <h1>Request a service</h1>
-          <p>A thoughtful first step towards your next service.</p>
+
           <ol className="booking-steps" aria-label="Request progress">
             {steps.map((name, index) => (
               <li
@@ -266,6 +266,17 @@ export function BookingForm() {
               </li>
             ))}
           </ol>
+          {data.service && step < 4 && (
+            <div className="request-summary">
+              <p className="section-kicker">Your request so far</p>
+              <dl>
+                <div><dt>Service</dt><dd>{serviceName}</dd></div>
+                {[data.make, data.model, data.year].some(Boolean) && <div><dt>Vehicle</dt><dd>{[data.year, data.make, data.model].filter(Boolean).join(" ")}</dd></div>}
+                {data.date && <div><dt>Preferred date</dt><dd>{summary[2].rows[0][1]}</dd></div>}
+                {data.time && <div><dt>Time preference</dt><dd>{data.time}</dd></div>}
+              </dl>
+            </div>
+          )}
           <div className="demo-callout">
             <Info size={19} aria-hidden="true" />
             <p>
@@ -288,10 +299,21 @@ export function BookingForm() {
               {headings[step]}
             </h2>
             <p>{descriptions[step]}</p>
+            {step > 0 && step < 4 && (
+              <p className="selected-service">
+                <span>Selected service</span>
+                <strong>{serviceName}</strong>
+              </p>
+            )}
           </div>
           <form ref={form} noValidate onSubmit={submit}>
+            <p className="validation-status sr-only" role="alert" aria-atomic="true">
+              {Object.values(errors).filter(Boolean).length > 0
+                ? "Please check the highlighted fields before continuing."
+                : ""}
+            </p>
             {step === 0 && (
-              <fieldset className="service-options">
+              <fieldset className="service-options" aria-invalid={!!errors.service}>
                 <legend className="sr-only">Select a service</legend>
                 {[
                   ...services,
@@ -333,11 +355,11 @@ export function BookingForm() {
             )}
             {step === 1 && (
               <div className="fields">
-                <div className="field-row">
+                <div className="field-row vehicle-row">
                   {field("make", "Make", { placeholder: "e.g. Toyota" })}
                   {field("model", "Model", { placeholder: "e.g. Corolla" })}
+                  {field("year", "Year", { placeholder: "e.g. 2020" })}
                 </div>
-                {field("year", "Year", { placeholder: "e.g. 2020" })}
                 <div className="field">
                   <label htmlFor="notes">
                     What have you noticed? <span>(optional)</span>

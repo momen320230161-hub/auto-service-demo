@@ -10,6 +10,10 @@ The subject is everyday automotive care, expressed through precise alignment, au
 
 The mobile request flow prioritizes the first service choice over introductory copy. Review edits offer explicit save/cancel actions and return directly to review. The header switches to its navigation disclosure at 960px so larger, readable controls remain comfortable on tablets.
 
+The audit extends the compact request layout to 960px, giving tablet forms the full content width. Interactive control borders use `#7C9097` for distinguishable inputs and radio outlines; the lighter divider token remains reserved for decorative separation. Review edit buttons have 44px touch targets. Missing pages retain the same light palette and provide a direct route home.
+
+The subsequent visual pass gives the hero a balanced two-line heading, removes its redundant note and lets the workshop photograph stand without an enclosing card. Service and process titles use a stronger weight; the closing request invitation uses direct language without decorative curves. Vehicle, preference and contact steps display the selected service as compact context. See `DESIGN_REFINEMENT.md` for the rationale and before/after captures.
+
 Composition:
 
 ```text
@@ -24,3 +28,5 @@ brand / concept            contact placeholders
 ```
 
 The plan was reviewed against the brief before composition: retain the automotive editorial feel, but avoid a newspaper layout, generic card grids, dark sections, fabricated trust signals and decorative counters. Authentic maintenance work is the visual anchor; surrounding sections stay quiet. One consistent palette runs through home and booking.
+
+The approved desktop-first implementation replaces service rows with a six-choice explorer and contextual detail panel, uses a wider technician-focused hero crop, compresses the process into a horizontal sequence, and makes the final CTA useful for unspecified concerns. The desktop booking sidebar summarizes entered data; mobile retains compact context. Final screenshots and validation are in `CLIENT_DEMO_HANDOFF.md`.
