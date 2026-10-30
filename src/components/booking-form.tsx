@@ -16,14 +16,14 @@ import { localDate, validateStep } from "@/lib/validation";
 import { emptyBooking, type Booking, type Errors } from "@/types/booking";
 
 const headings = [
-  "What can we help with?",
+  "Choose your service.",
   "Tell us about your car.",
   "What works for your day?",
   "A few details about you.",
   "Everything look right?",
 ];
 const descriptions = [
-  "Choose an illustrative service to get started.",
+  "Choose a sample service to get started.",
   "Share what you know. All vehicle details are optional.",
   "These are preferences, not available appointment slots.",
   "Use sample details. This demo never sends your information.",
@@ -41,6 +41,7 @@ export function BookingForm() {
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState<Errors>({});
   const [complete, setComplete] = useState(false);
+  const [reviewDraft, setReviewDraft] = useState<Booking | null>(null);
   const [today, setToday] = useState("");
   const heading = useRef<HTMLHeadingElement>(null);
   const form = useRef<HTMLFormElement>(null);
@@ -62,6 +63,15 @@ export function BookingForm() {
     setErrors({});
     setStep(next);
   }
+  function editStep(next: number) {
+    setReviewDraft({ ...data });
+    navigate(next);
+  }
+  function cancelEdit() {
+    if (reviewDraft) setData(reviewDraft);
+    setReviewDraft(null);
+    navigate(4);
+  }
   function submit(event: FormEvent) {
     event.preventDefault();
     const found =
@@ -78,6 +88,7 @@ export function BookingForm() {
           (index) => Object.keys(validateStep(index, data)).length,
         );
         setStep(invalidStep ?? 0);
+        setReviewDraft({ ...data });
       }
       requestAnimationFrame(() =>
         form.current
@@ -89,7 +100,10 @@ export function BookingForm() {
       return;
     }
     moved.current = true;
-    if (step < 4) setStep(step + 1);
+    if (reviewDraft) {
+      setReviewDraft(null);
+      setStep(4);
+    } else if (step < 4) setStep(step + 1);
     else setComplete(true);
   }
   function field(
@@ -219,10 +233,7 @@ export function BookingForm() {
       <div className="booking-layout">
         <aside className="booking-sidebar">
           <p className="section-kicker">Appointment request · Demo</p>
-          <h1>
-            A little detail.
-            <br /> A good start.
-          </h1>
+          <h1>Request a service</h1>
           <p>A thoughtful first step towards your next service.</p>
           <ol className="booking-steps" aria-label="Request progress">
             {steps.map((name, index) => (
@@ -240,8 +251,12 @@ export function BookingForm() {
                     index + 1
                   )}
                 </span>
-                {index < step ? (
-                  <button onClick={() => navigate(index)}>
+                {index < step && !reviewDraft ? (
+                  <button
+                    onClick={() =>
+                      step === 4 ? editStep(index) : navigate(index)
+                    }
+                  >
                     {name}
                     <span className="sr-only">, edit step</span>
                   </button>
@@ -254,15 +269,21 @@ export function BookingForm() {
           <div className="demo-callout">
             <Info size={19} aria-hidden="true" />
             <p>
-              <strong>A preview, with no commitment.</strong>No appointment is
-              booked. Your details aren’t sent or saved. Please use sample
-              information.
+              <strong>Local-only demo.</strong> Nothing is booked or sent.
+              <span className="demo-detail">
+                {" "}
+                Your details stay in this page. Please use sample information.
+              </span>
             </p>
           </div>
         </aside>
         <div className="booking-panel">
           <div className="form-heading">
-            <span className="muted">Step {step + 1} of 5</span>
+            <span className="muted">
+              {reviewDraft
+                ? `Editing ${steps[step].toLowerCase()}`
+                : `Step ${step + 1} of 5`}
+            </span>
             <h2 ref={heading} tabIndex={-1}>
               {headings[step]}
             </h2>
@@ -391,6 +412,7 @@ export function BookingForm() {
                 <label className="checkbox-label">
                   <input
                     type="checkbox"
+                    required
                     checked={data.consent}
                     onChange={(e) => update("consent", e.target.checked)}
                     aria-invalid={!!errors.consent}
@@ -418,7 +440,7 @@ export function BookingForm() {
                       <h3>{group.title}</h3>
                       <button
                         type="button"
-                        onClick={() => navigate(group.step)}
+                        onClick={() => editStep(group.step)}
                         aria-label={`Edit ${group.title.toLowerCase()}`}
                       >
                         Edit
@@ -444,17 +466,31 @@ export function BookingForm() {
               </div>
             )}
             <div className="form-actions">
-              {step > 0 && (
+              {reviewDraft ? (
                 <button
                   className="text-link"
                   type="button"
-                  onClick={() => navigate(step - 1)}
+                  onClick={cancelEdit}
                 >
-                  <ArrowLeft size={17} aria-hidden="true" /> Back
+                  Cancel edit
                 </button>
+              ) : (
+                step > 0 && (
+                  <button
+                    className="text-link"
+                    type="button"
+                    onClick={() => navigate(step - 1)}
+                  >
+                    <ArrowLeft size={17} aria-hidden="true" /> Back
+                  </button>
+                )
               )}
               <button type="submit" className="button">
-                {step === 4 ? "Complete demo request" : "Continue"}
+                {reviewDraft
+                  ? "Save changes"
+                  : step === 4
+                    ? "Complete demo"
+                    : "Continue"}
                 <ArrowRight size={18} aria-hidden="true" />
               </button>
             </div>

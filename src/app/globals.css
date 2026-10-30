@@ -31,7 +31,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body), Arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -107,6 +107,9 @@ h1:focus,
 h2:focus {
   outline: none;
 }
+main:focus {
+  outline: none;
+}
 .container {
   max-width: 1280px;
   margin-inline: auto;
@@ -119,7 +122,7 @@ h2:focus {
   background: var(--wash);
   text-align: center;
   padding: 8px 20px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.015em;
   color: var(--muted);
 }
@@ -155,7 +158,7 @@ h2:focus {
 .brand small {
   display: block;
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.13em;
   font-weight: 500;
   margin-top: 7px;
@@ -180,7 +183,7 @@ h2:focus {
 .desktop-nav {
   display: flex;
   gap: 35px;
-  font-size: 13px;
+  font-size: 15px;
   margin-left: auto;
   margin-right: 35px;
 }
@@ -204,7 +207,7 @@ h2:focus {
   border: 1px solid var(--accent);
   border-radius: var(--radius);
   color: #fff;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.4;
   transition: background 0.16s ease;
@@ -218,7 +221,7 @@ h2:focus {
   padding: 12px 17px;
   min-height: 45px;
   gap: 20px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .menu-toggle {
   display: none;
@@ -256,7 +259,7 @@ h2:focus {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 25px;
 }
 .small-rule {
@@ -273,7 +276,7 @@ h2:focus {
 }
 .hero-copy > p {
   max-width: 350px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.85;
 }
 .hero-actions {
@@ -287,7 +290,7 @@ h2:focus {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--ink);
   background: none;
@@ -299,7 +302,7 @@ h2:focus {
   display: flex;
   gap: 11px;
   align-items: flex-start;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
   margin-top: 48px;
   color: var(--ink);
@@ -327,13 +330,13 @@ h2:focus {
   padding: 19px 22px;
   display: grid;
   gap: 3px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
   color: var(--muted);
 }
 .photo-caption strong {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink);
 }
 .services-section {
@@ -349,12 +352,12 @@ h2:focus {
   margin-bottom: 38px;
 }
 .section-kicker {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--accent);
   margin-bottom: 17px;
 }
 .section-heading > p {
-  font-size: 13px;
+  font-size: 15px;
   max-width: 360px;
   padding-bottom: 5px;
   line-height: 1.9;
@@ -362,7 +365,7 @@ h2:focus {
 .demo-note {
   display: block;
   margin-top: 14px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .service-grid {
@@ -389,7 +392,7 @@ h2:focus {
 .service-item p {
   max-width: 335px;
   line-height: 1.75;
-  font-size: 12px;
+  font-size: 15px;
   padding-right: 20px;
 }
 .service-arrow {
@@ -412,7 +415,7 @@ h2:focus {
   gap: 20px;
   border-top: 1px solid var(--line);
   padding-block: 22px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 .approach {
@@ -424,7 +427,7 @@ h2:focus {
 .approach-intro > p:not(.section-kicker) {
   max-width: 340px;
   margin-top: 25px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.9;
 }
 .approach-intro .text-link {
@@ -449,7 +452,7 @@ h2:focus {
   padding-bottom: 0;
 }
 .step-number {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--accent);
   padding-top: 5px;
 }
@@ -458,7 +461,7 @@ h2:focus {
   margin-bottom: 8px;
 }
 .process-list p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.9;
   max-width: 330px;
 }
@@ -486,13 +489,13 @@ h2:focus {
   padding-top: 24px;
 }
 .booking-banner p:not(.section-kicker) {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.9;
   margin-bottom: 20px;
 }
 .booking-banner small {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 13px;
 }
@@ -532,12 +535,12 @@ footer {
 }
 .footer-brand span {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0;
 }
 .footer-top > div > p {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 14px;
   line-height: 1.8;
 }
@@ -550,10 +553,11 @@ footer {
   margin-bottom: 15px;
 }
 .contact-details dl {
-  display: flex;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 32px;
   margin: 0 0 13px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .contact-details dt {
   color: var(--muted);
@@ -561,12 +565,13 @@ footer {
 }
 .contact-details dd {
   margin: 0;
+  overflow-wrap: anywhere;
 }
 .contact-details > a {
   display: inline-flex;
   gap: 15px;
   align-items: center;
-  font-size: 11px;
+  font-size: 14px;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -576,7 +581,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 /* The booking request is local state only. */
@@ -589,7 +594,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   padding-block: 10px;
   margin-bottom: 32px;
@@ -605,7 +610,7 @@ footer {
   margin-bottom: 20px;
 }
 .booking-sidebar > p:not(.section-kicker) {
-  font-size: 13px;
+  font-size: 15px;
   max-width: 250px;
 }
 .booking-steps {
@@ -617,7 +622,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 13px;
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 18px;
   color: var(--muted);
 }
@@ -628,7 +633,7 @@ footer {
   border-radius: 50%;
   width: 29px;
   height: 29px;
-  font-size: 11px;
+  font-size: 12px;
   background: var(--white);
 }
 .booking-steps .current {
@@ -666,7 +671,7 @@ footer {
   color: var(--accent);
 }
 .demo-callout p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.8;
 }
 .demo-callout strong {
@@ -687,7 +692,7 @@ footer {
   margin-bottom: 28px;
 }
 .form-heading > span {
-  font-size: 11px;
+  font-size: 12px;
 }
 .form-heading h2 {
   font-size: 29px;
@@ -696,7 +701,7 @@ footer {
   margin-block: 10px;
 }
 .form-heading p {
-  font-size: 12px;
+  font-size: 14px;
 }
 .service-options {
   display: grid;
@@ -714,7 +719,7 @@ footer {
   padding: 19px 15px;
   position: relative;
   border-radius: var(--radius);
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   min-width: 0;
 }
@@ -755,6 +760,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
+  flex-wrap: wrap;
   border-top: 1px solid var(--line);
   padding-top: 24px;
   margin-top: 30px;
@@ -773,14 +779,14 @@ footer {
 }
 .field label {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   margin-bottom: 7px;
 }
 .field label span {
   font-weight: 400;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 .field input,
 .field select,
@@ -792,7 +798,7 @@ footer {
   background: var(--white);
   color: var(--ink);
   padding: 12px 13px;
-  font-size: 13px;
+  font-size: 16px;
   min-height: 46px;
 }
 .field input::placeholder,
@@ -804,7 +810,7 @@ footer {
 }
 .field small {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 5px;
 }
@@ -812,7 +818,7 @@ footer {
   border-color: var(--error);
 }
 .field-error {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--error);
   margin-top: 5px;
   grid-column: 1/-1;
@@ -830,14 +836,14 @@ footer {
   margin-top: 2px;
 }
 .inline-note p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.8;
 }
 .checkbox-label {
   display: flex;
   gap: 11px;
   align-items: flex-start;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.8;
   cursor: pointer;
 }
@@ -865,19 +871,19 @@ footer {
   margin-bottom: 12px;
 }
 .review-heading h3 {
-  font-size: 14px;
+  font-size: 16px;
 }
 .review-heading button {
   border: 0;
   background: none;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--accent);
   text-decoration: underline;
   padding: 5px;
 }
 .review dl {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
 }
 .review dl > div {
   display: grid;
@@ -912,11 +918,11 @@ footer {
   margin-bottom: 23px;
 }
 .completion > p {
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 16px;
 }
 .completion > .muted {
-  font-size: 12px;
+  font-size: 14px;
   max-width: 420px;
   margin-inline: auto;
 }
@@ -929,7 +935,7 @@ footer {
   margin-block: 25px;
 }
 .completion-summary span {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 .completion-summary strong {
@@ -976,7 +982,7 @@ footer {
     padding-inline: 17px;
   }
   .hero-actions .text-link {
-    font-size: 11px;
+    font-size: 14px;
   }
   .hero-note {
     margin-top: 32px;
@@ -1007,37 +1013,7 @@ footer {
     font-size: 38px;
   }
 }
-@media (max-width: 760px) {
-  html {
-    scroll-padding-top: 85px;
-  }
-  .container {
-    padding-inline: 24px;
-  }
-  .concept-bar {
-    font-size: 10px;
-    padding: 7px 12px;
-  }
-  .concept-bar > span {
-    margin-left: 8px;
-    padding-left: 8px;
-  }
-  .header-inner {
-    height: 78px;
-    gap: 10px;
-  }
-  .brand {
-    font-size: 26px;
-  }
-  .brand small {
-    font-size: 9px;
-  }
-  .brand-mark {
-    gap: 3px;
-  }
-  .brand-mark i {
-    width: 5px;
-  }
+@media (max-width: 960px) {
   .desktop-nav,
   .header-cta {
     display: none;
@@ -1059,7 +1035,39 @@ footer {
     align-items: center;
     padding: 14px 0;
     border-bottom: 1px solid var(--line);
-    font-size: 14px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 85px;
+  }
+  .container {
+    padding-inline: 24px;
+  }
+  .concept-bar {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  .concept-bar > span {
+    margin-left: 8px;
+    padding-left: 8px;
+  }
+  .header-inner {
+    height: 78px;
+    gap: 10px;
+  }
+  .brand {
+    font-size: 26px;
+  }
+  .brand small {
+    font-size: 11px;
+  }
+  .brand-mark {
+    gap: 3px;
+  }
+  .brand-mark i {
+    width: 5px;
   }
   .hero {
     grid-template-columns: 1fr;
@@ -1071,7 +1079,7 @@ footer {
     padding: 0;
   }
   .hero-intro {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 20px;
   }
   .hero h1 {
@@ -1080,7 +1088,7 @@ footer {
     margin-bottom: 22px;
   }
   .hero-copy > p {
-    font-size: 13px;
+    font-size: 15px;
     max-width: 410px;
     line-height: 1.9;
   }
@@ -1089,11 +1097,11 @@ footer {
     gap: 24px;
   }
   .hero-actions .button {
-    font-size: 12px;
+    font-size: 14px;
     gap: 20px;
   }
   .hero-actions .text-link {
-    font-size: 12px;
+    font-size: 14px;
   }
   .hero-note {
     display: none;
@@ -1106,7 +1114,7 @@ footer {
   }
   .photo-caption {
     padding: 15px 18px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .services-section {
     padding-top: 44px;
@@ -1117,7 +1125,7 @@ footer {
     margin-bottom: 28px;
   }
   .section-kicker {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 13px;
   }
   h2 {
@@ -1131,10 +1139,10 @@ footer {
   }
   .section-heading > p {
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .demo-note {
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 10px;
   }
   .service-grid {
@@ -1148,7 +1156,7 @@ footer {
     font-size: 17px;
   }
   .service-item p {
-    font-size: 12px;
+    font-size: 15px;
     max-width: 100%;
     padding-right: 14px;
   }
@@ -1157,10 +1165,10 @@ footer {
     flex-direction: column;
     gap: 4px;
     padding-block: 19px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .service-help .text-link {
-    font-size: 12px;
+    font-size: 14px;
   }
   .approach {
     grid-template-columns: 1fr;
@@ -1173,7 +1181,7 @@ footer {
   .approach-intro > p:not(.section-kicker) {
     max-width: 430px;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .approach-intro .text-link {
     margin-top: 12px;
@@ -1183,7 +1191,7 @@ footer {
     gap: 20px;
   }
   .process-list p {
-    font-size: 12px;
+    font-size: 15px;
     max-width: 100%;
   }
   .booking-banner {
@@ -1200,11 +1208,11 @@ footer {
     padding-top: 0;
   }
   .booking-banner p:not(.section-kicker) {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 17px;
   }
   .booking-banner .button {
-    font-size: 11px;
+    font-size: 14px;
     gap: 17px;
     padding-inline: 16px;
   }
@@ -1220,12 +1228,12 @@ footer {
     min-width: 0;
   }
   .contact-details dl {
-    gap: 30px;
+    gap: 16px 24px;
   }
   .footer-bottom {
     flex-wrap: wrap;
     gap: 10px;
-    font-size: 9px;
+    font-size: 11px;
     padding-bottom: 25px;
   }
   .footer-bottom p {
@@ -1233,18 +1241,19 @@ footer {
     width: 100%;
   }
   .booking-page {
-    padding-top: 20px;
+    padding-top: 12px;
     padding-bottom: 45px;
   }
   .back-link {
-    margin-bottom: 22px;
+    margin-bottom: 12px;
   }
   .booking-layout {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 18px;
   }
   .booking-sidebar h1 {
-    font-size: 37px;
+    font-size: 25px;
+    margin-bottom: 0;
   }
   .booking-sidebar h1 br {
     display: none;
@@ -1252,22 +1261,27 @@ footer {
   .booking-sidebar > p:not(.section-kicker) {
     display: none;
   }
+  .booking-sidebar > .section-kicker,
+  .demo-detail {
+    display: none;
+  }
   .booking-steps {
     display: flex;
     justify-content: space-between;
     gap: 5px;
-    margin: 25px 0 0;
+    margin: 14px 0 0;
   }
   .booking-steps li {
     flex-direction: column;
-    font-size: 10px;
+    font-size: 12px;
     gap: 6px;
     margin-bottom: 0;
     flex: 1;
   }
   .booking-steps button {
-    font-size: 10px;
-    padding: 0;
+    font-size: 12px;
+    padding: 0 2px;
+    min-height: 28px;
   }
   .booking-steps li > span {
     width: 27px;
@@ -1275,30 +1289,34 @@ footer {
   }
   .demo-callout {
     max-width: none;
-    margin-top: 22px;
-    padding: 13px;
+    margin-top: 12px;
+    padding: 10px 12px;
   }
   .demo-callout p {
-    font-size: 10px;
+    font-size: 12px;
+    line-height: 1.6;
   }
   .demo-callout strong {
     display: inline;
     margin-right: 4px;
   }
   .booking-panel {
-    padding: 24px 20px;
+    padding: 22px 20px;
+  }
+  .form-heading {
+    margin-bottom: 20px;
   }
   .form-heading h2 {
     font-size: 26px;
   }
   .form-heading p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .service-options {
     gap: 9px;
   }
   .service-option {
-    font-size: 11px;
+    font-size: 14px;
     padding: 16px 10px;
     gap: 8px;
   }
@@ -1313,9 +1331,10 @@ footer {
     margin-top: 24px;
   }
   .form-actions > .button {
-    font-size: 12px;
+    font-size: 14px;
     padding-inline: 17px;
     gap: 15px;
+    max-width: 100%;
   }
   .completion {
     margin-block: 0;
@@ -1329,8 +1348,17 @@ footer {
     flex-wrap: wrap;
   }
   .review dl > div {
-    grid-template-columns: 95px 1fr;
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+    margin-top: 12px;
+  }
+  .review dt {
+    font-size: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .service-options {
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 370px) {
@@ -1338,18 +1366,18 @@ footer {
     padding-inline: 18px;
   }
   .concept-bar {
-    font-size: 9px;
+    font-size: 11px;
   }
   .hero-actions {
     gap: 12px;
   }
   .hero-actions .button {
-    font-size: 11px;
+    font-size: 14px;
     padding-inline: 13px;
     gap: 12px;
   }
   .hero-actions .text-link {
-    font-size: 11px;
+    font-size: 14px;
     gap: 7px;
   }
   .booking-panel {

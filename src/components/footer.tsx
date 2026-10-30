@@ -19,14 +19,17 @@ export function Footer() {
           <div className="contact-details">
             <h2>Let’s get in touch</h2>
             <dl>
-              <div>
-                <dt>Phone & email</dt>
-                <dd>{site.contact.phone}</dd>
-              </div>
-              <div>
-                <dt>Workshop & hours</dt>
-                <dd>{site.contact.address}</dd>
-              </div>
+              {[
+                ["Phone", site.contact.phone],
+                ["Email", site.contact.email],
+                ["Workshop", site.contact.address],
+                ["Hours", site.contact.hours],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
             </dl>
             <Link href="/booking">
               Explore the request demo{" "}
@@ -37,9 +40,9 @@ export function Footer() {
         <div className="footer-bottom">
           <span>{site.status}</span>
           <p>Illustrative services. No real bookings or messages are sent.</p>
-          <Link className="inline-flex items-center gap-2" href="/#top">
+          <a className="inline-flex items-center gap-2" href="#top">
             Back to top <ArrowUp size={12} aria-hidden="true" />
-          </Link>
+          </a>
         </div>
       </div>
     </footer>

@@ -5,7 +5,7 @@ import { homeContent as content, services, site } from "@/content/site";
 import { ServiceIcon } from "@/components/icons";
 export default function Home() {
   return (
-    <main id="main">
+    <main id="main" tabIndex={-1}>
       <section className="hero container" aria-labelledby="hero-title">
         <div className="hero-copy">
           <div className="hero-intro">
@@ -135,8 +135,7 @@ export default function Home() {
             {content.booking.description[1]}
           </p>
           <Link href="/booking" className="button">
-            Explore appointment request{" "}
-            <ArrowUpRight size={19} aria-hidden="true" />
+            Request appointment <ArrowUpRight size={19} aria-hidden="true" />
           </Link>
           <small>{content.booking.disclaimer}</small>
         </div>

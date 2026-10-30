@@ -16,8 +16,8 @@ const body = DM_Sans({
 });
 export const metadata: Metadata = {
   title: {
-    default: "Motive Auto Care — Concept Demo",
-    template: "%s | Motive Concept",
+    default: `${site.name} ${site.descriptor} — Concept Demo`,
+    template: `%s | ${site.name} Concept`,
   },
   description: site.description,
   robots: { index: false, follow: false },

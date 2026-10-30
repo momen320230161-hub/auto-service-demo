@@ -2,7 +2,7 @@
 
 A light-only automotive service concept built with Next.js App Router, TypeScript, Tailwind CSS, and Lucide. **Motive is a sample brand, not an identified client business.** Services and imagery are illustrative; contact details remain “To be confirmed.”
 
-Previews: [Desktop homepage](artifacts/home-desktop.png) · [Mobile homepage](artifacts/home-mobile.png) · [Desktop request review](artifacts/review-desktop.png) · [Mobile request review](artifacts/review-mobile.png).
+Previews: [Desktop homepage](artifacts/home-desktop.png) · [Mobile homepage](artifacts/home-mobile.png) · [Mobile booking start](artifacts/booking-mobile-start.png) · [Desktop request review](artifacts/review-desktop.png) · [Mobile request review](artifacts/review-mobile.png).
 
 ## Run locally
 
@@ -28,6 +28,8 @@ npm start
 
 - Responsive home page, mobile navigation, service links with preselection, anchor navigation, and contact placeholders.
 - Five-step booking demo: service, optional vehicle details/notes, preferred date/time, sample contact details, and editable review.
+- Editing a reviewed step returns directly to review after validation; cancel restores the previous values. The footer's top link preserves the current page and booking state.
+- Readable body text and 16px form controls, with a compact mobile booking introduction and all four configurable contact fields shown separately. Browser titles derive from the sample brand configuration.
 - Field validation, inline error descriptions, focus on invalid fields, step heading focus, keyboard controls, skip link, and reduced-motion support.
 - Completion explicitly says **“Demo — not submitted”** and **“Demo request only — no appointment has been booked or sent.”**
 
@@ -55,9 +57,11 @@ npm run build
 npm run test:e2e
 ```
 
-Playwright starts the production server unless one is already running. It checks desktop and mobile navigation, image loading, keyboard focus, horizontal overflow, booking validation, editable review, direct service selection, no POST submission, and no browser-storage persistence. Screenshots are written to `artifacts/`; traces on failure go to `test-results/`. Mobile tests emulate a phone in Chromium; real Safari/device testing is still recommended before client launch.
+Playwright starts the production server unless one is already running. It checks desktop and mobile navigation, image loading, keyboard focus, horizontal overflow, booking validation, saving/cancelling review edits, direct service selection, same-page top navigation, no POST submission, and no browser-storage persistence. Accessibility tests use axe-core on home, all form steps, validation errors, review and completion. Keyboard tests cover radio selection, menu dismissal and reduced motion. Screenshots are written to `artifacts/`; traces on failure go to `test-results/`.
 
 You can use an installed Chrome instead of downloading Chromium: set `PLAYWRIGHT_CHANNEL=chrome` before `npm run test:e2e` (PowerShell: `$env:PLAYWRIGHT_CHANNEL='chrome'`).
+
+For the optional WebKit mobile project, run `npx playwright install webkit`, set `PLAYWRIGHT_WEBKIT=1`, then run `npm run test:e2e -- --project=webkit-mobile`. It uses the WebKit engine with phone emulation; it does not replace testing Safari on a physical Apple device.
 
 ## Deploy on Vercel
 
@@ -74,7 +78,7 @@ Official reference: [Next.js on Vercel](https://vercel.com/docs/frameworks/full-
 
 ## Verification — 30 October 2026
 
-`npm run lint`, `npm run typecheck`, `npm run build`, and all **6 Playwright tests** passed. The lockfile passed `npm ci --dry-run --ignore-scripts`; `npm audit` reported **0 vulnerabilities**. Browser checks used installed Chrome, including phone emulation, with homepage widths from 320px to 1440px. Desktop/mobile home and review screenshots were visually inspected. This is local production-build verification; no Vercel deployment or real-device Safari verification has been performed.
+`npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, and all **15 Playwright tests** passed: 10 in Chrome (desktop and phone emulation), plus 5 in the optional WebKit phone project. The dependency audit reported **0 vulnerabilities**. Browser checks covered homepage widths from 320px to 1440px; mobile accessibility checks also exercised every booking stage at 320px. Review-edit validation/cancellation, retained booking data on the top link, skip-link destination focus, Escape dismissal, reduced motion and local-only completion were verified. Desktop/mobile home and review screenshots were visually inspected. This is local production-build verification; no Vercel deployment or physical-device Safari verification has been performed.
 
 ## Before a real launch
 

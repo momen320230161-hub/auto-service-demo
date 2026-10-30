@@ -1,10 +1,22 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { site } from "@/content/site";
 export function Header() {
   const [open, setOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    function dismiss(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", dismiss);
+    return () => document.removeEventListener("keydown", dismiss);
+  }, [open]);
   return (
     <header className="site-header">
       <div className="container header-inner">
@@ -33,6 +45,7 @@ export function Header() {
           Request appointment <ArrowUpRight size={17} aria-hidden="true" />
         </Link>
         <button
+          ref={menuButton}
           className="menu-toggle"
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}

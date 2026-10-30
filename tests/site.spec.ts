@@ -6,7 +6,7 @@ test("homepage, navigation, responsive layout and image", async ({
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Good care. For the road ahead.",
+    "Car care, made clear.",
   );
   const photo = page.getByAltText(
     "Mechanic working under the open hood of a silver vehicle in a workshop",
@@ -15,9 +15,16 @@ test("homepage, navigation, responsive layout and image", async ({
   await expect
     .poll(() => photo.evaluate((img: HTMLImageElement) => img.naturalWidth))
     .toBeGreaterThan(0);
-  await page.keyboard.press("Tab");
-  await expect(page.getByText("Skip to content")).toBeFocused();
-  if (testInfo.project.name === "mobile") {
+  const skipLink = page.getByText("Skip to content", { exact: true });
+  if (testInfo.project.use.browserName === "webkit") {
+    // Windows WebKit skips links with its default Tab preference.
+    // Chromium verifies sequential Tab order; verify activation here too.
+    await skipLink.focus();
+  } else await page.keyboard.press("Tab");
+  await expect(skipLink).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#main")).toBeFocused();
+  if (testInfo.project.use.isMobile) {
     await page.getByRole("button", { name: "Open navigation" }).click();
     await expect(
       page.getByRole("button", { name: "Close navigation" }),
@@ -35,7 +42,7 @@ test("homepage, navigation, responsive layout and image", async ({
       .getByRole("link", { name: "Services" })
       .click();
   await expect(page).toHaveURL(/#services$/);
-  for (const width of testInfo.project.name === "mobile"
+  for (const width of testInfo.project.use.isMobile
     ? [320, 375, 390, 760]
     : [768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
@@ -50,7 +57,7 @@ test("homepage, navigation, responsive layout and image", async ({
       .toBe(true);
   }
   await page.setViewportSize(
-    testInfo.project.name === "mobile"
+    testInfo.project.use.isMobile
       ? { width: 390, height: 844 }
       : { width: 1440, height: 1000 },
   );
@@ -76,7 +83,22 @@ test("booking validates, retains edits and completes locally without submission"
     if (request.method() === "POST") submissions.push(request.url());
   });
   await page.goto("/booking");
-  for (const width of testInfo.project.name === "mobile"
+  if (testInfo.project.use.isMobile) {
+    await page.setViewportSize({ width: 390, height: 664 });
+    await expect
+      .poll(() =>
+        page
+          .locator(".service-option")
+          .first()
+          .evaluate((element) => element.getBoundingClientRect().bottom),
+      )
+      .toBeLessThan(664);
+    await page.screenshot({
+      path: "artifacts/booking-mobile-start.png",
+      fullPage: true,
+    });
+  }
+  for (const width of testInfo.project.use.isMobile
     ? [320, 375, 390]
     : [768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
@@ -87,7 +109,7 @@ test("booking validates, retains edits and completes locally without submission"
     ).toBe(true);
   }
   await page.setViewportSize(
-    testInfo.project.name === "mobile"
+    testInfo.project.use.isMobile
       ? { width: 390, height: 844 }
       : { width: 1440, height: 1000 },
   );
@@ -98,6 +120,10 @@ test("booking validates, retains edits and completes locally without submission"
   await page.getByRole("radio", { name: "Oil & filter" }).check();
   await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByLabel("Make (optional)").fill("Toyota");
+  await expect(page.getByLabel("Make (optional)")).toHaveCSS(
+    "font-size",
+    "16px",
+  );
   await page.getByLabel("Model (optional)").fill("Corolla");
   await page.getByLabel("Year (optional)").fill("1800");
   await page.getByRole("button", { name: "Continue", exact: true }).click();
@@ -138,14 +164,62 @@ test("booking validates, retains edits and completes locally without submission"
   ).toBeVisible();
   await page.getByRole("button", { name: "Edit vehicle", exact: true }).click();
   await expect(page.getByLabel("Make (optional)")).toHaveValue("Toyota");
-  for (let i = 0; i < 3; i++)
-    await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByLabel("Model (optional)").fill("Camry");
+  await page.getByRole("button", { name: "Cancel edit", exact: true }).click();
+  await expect(
+    page.getByText("2020 Toyota Corolla", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Edit vehicle", exact: true }).click();
+  await page.getByLabel("Model (optional)").fill("Camry");
+  await page.getByRole("button", { name: "Save changes", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Everything look right?" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("2020 Toyota Camry", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Edit service", exact: true }).click();
+  await page.getByRole("radio", { name: "Brakes", exact: true }).check();
+  await page.getByRole("button", { name: "Save changes", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Everything look right?" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Edit preference", exact: true })
+    .click();
+  await page.getByLabel("Preferred date", { exact: true }).fill("2020-01-01");
+  await page.getByRole("button", { name: "Save changes", exact: true }).click();
+  await expect(page.getByText("Choose today or a future date.")).toBeVisible();
+  await page.getByLabel("Preferred date", { exact: true }).fill("2099-12-02");
+  await page.getByRole("button", { name: "Save changes", exact: true }).click();
+  await expect(
+    page.getByText("2 December 2099", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Edit contact", exact: true }).click();
+  await page.getByLabel("Email address", { exact: true }).fill("invalid");
+  await page.getByRole("button", { name: "Save changes", exact: true }).click();
+  await expect(page.getByText("Enter a valid email address.")).toBeVisible();
+  await page
+    .getByLabel("Email address", { exact: true })
+    .fill("alex.updated@example.com");
+  await page.getByRole("button", { name: "Save changes", exact: true }).click();
+  await expect(
+    page.getByText("alex.updated@example.com", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Back to top", exact: true }).click();
+  await expect(page).toHaveURL(/\/booking#top$/);
+  await expect(
+    page.getByRole("heading", { name: "Everything look right?" }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("2020 Toyota Camry", { exact: true }),
+  ).toBeVisible();
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await page.screenshot({
     path: `artifacts/review-${testInfo.project.name}.png`,
     fullPage: true,
   });
-  await page.getByRole("button", { name: "Complete demo request" }).click();
+  await page.getByRole("button", { name: "Complete demo" }).click();
   await expect(
     page.getByRole("heading", { name: "Demo — not submitted" }),
   ).toBeVisible();
@@ -157,7 +231,7 @@ test("booking validates, retains edits and completes locally without submission"
   expect(submissions).toEqual([]);
   await page.reload();
   await expect(
-    page.getByRole("heading", { name: "What can we help with?" }),
+    page.getByRole("heading", { name: "Choose your service." }),
   ).toBeVisible();
   expect(
     await page.evaluate(() => localStorage.length + sessionStorage.length),
@@ -165,7 +239,7 @@ test("booking validates, retains edits and completes locally without submission"
 });
 test("service links preselect the matching service", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: /^Brakes Unusual/ }).click();
+  await page.getByRole("link", { name: /^Brakes Inspection/ }).click();
   await expect(
     page.getByRole("radio", { name: "Brakes", exact: true }),
   ).toBeChecked();

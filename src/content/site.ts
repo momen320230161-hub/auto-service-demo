@@ -11,52 +11,48 @@ export const site = {
     email: "To be confirmed",
   },
   hero: {
-    title: "Good care. For the road ahead.",
+    title: "Car care, made clear.",
     description:
-      "From the everyday essentials to the things you can’t quite put your finger on. Explore a simpler approach to looking after your car.",
+      "Explore maintenance and repair services, share your vehicle details, and choose a preferred time for a visit.",
   },
 };
 export const services = [
   {
     id: "oil",
     name: "Oil & filter",
-    description:
-      "The everyday essential. Routine oil and filter service for your next maintenance visit.",
+    description: "Routine oil and filter changes for scheduled maintenance.",
     icon: "oil",
   },
   {
     id: "brakes",
     name: "Brakes",
     description:
-      "Unusual sounds or a different feel? Start with a brake inspection and discuss the next steps.",
+      "Inspection requests for noise, vibration or changes in braking.",
     icon: "brakes",
   },
   {
     id: "diagnostics",
     name: "Diagnostics",
     description:
-      "Warning lights and performance concerns. A starting point for understanding what’s going on.",
+      "A starting point for warning lights and performance concerns.",
     icon: "diagnostics",
   },
   {
     id: "battery",
     name: "Battery",
-    description:
-      "Slow starts or battery concerns. Explore condition checks and replacement requests.",
+    description: "Battery condition checks and replacement inquiries.",
     icon: "battery",
   },
   {
     id: "tires",
     name: "Tires & alignment",
-    description:
-      "Wear, balance and alignment inquiries to help you plan your next tire service.",
+    description: "Tire wear checks, balancing and alignment inquiries.",
     icon: "tires",
   },
   {
     id: "ac",
     name: "Air conditioning",
-    description:
-      "Cooling and ventilation concerns, from weak airflow to a cabin that won’t cool down.",
+    description: "Checks for weak airflow or a cabin that won’t cool down.",
     icon: "ac",
   },
 ] as const;
@@ -68,27 +64,31 @@ export const timeWindows = [
 ];
 
 export const homeContent = {
-  intro: "A little care goes a long way.",
+  intro: "Maintenance & repair, thoughtfully considered.",
   note: "A service experience, thoughtfully reimagined.",
   noteDetail: "An independent workshop concept.",
-  imageAlt: "Mechanic working under the open hood of a silver vehicle in a workshop",
-  caption: ["Care starts with a closer look.", "Illustrative workshop photography · Concept demo"],
+  imageAlt:
+    "Mechanic working under the open hood of a silver vehicle in a workshop",
+  caption: [
+    "Care starts with a closer look.",
+    "Illustrative workshop photography · Concept demo",
+  ],
   services: {
-    kicker: "Looking after the essentials",
-    title: ["Care for every", "part of your journey."],
+    kicker: "Explore the services",
+    title: ["Everyday upkeep.", "Unexpected concerns."],
     description: [
-      "Routine upkeep or something unexpected.",
       "Find a starting point for what your car needs.",
+      "Not sure? You can describe the concern instead.",
     ],
     disclaimer: "Illustrative services. Client offerings to be confirmed.",
     help: "Not sure where to start? Describe what you’ve noticed.",
     helpAction: "Let’s work it out",
   },
   approach: {
-    kicker: "Less guesswork. More clarity.",
-    title: ["A simpler route", "to your next service."],
+    kicker: "How the request works",
+    title: ["A few details.", "A clear next step."],
     description:
-      "Your car has a story. Start with the details, choose a preferred time, and see what a considered request experience can feel like.",
+      "Choose a service, tell us about your car, and add a preferred time. Review everything before completing the demo.",
     steps: [
       {
         title: "Tell us what brings you in",
@@ -105,11 +105,11 @@ export const homeContent = {
     ],
   },
   booking: {
-    kicker: "Your next chapter starts here",
-    title: ["Let’s take care", "of what’s next."],
+    kicker: "Try the appointment request",
+    title: ["Your car.", "Your next step."],
     description: [
-      "A few details about you and your car.",
-      "A clearer picture of the road ahead.",
+      "Start with a service or describe a concern.",
+      "You can review and edit before finishing.",
     ],
     disclaimer: "Demo only. Nothing is booked or submitted.",
   },
